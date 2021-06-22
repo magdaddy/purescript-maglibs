@@ -12,12 +12,21 @@ to generate this file without the comments in this block.
 -}
 { name = "maglibs"
 , dependencies =
-    [ "console", "effect", "prelude", "psci-support"
-    , "react-basic-hooks"
-    ]
+  [ "aff"
+  , "console"
+  , "effect"
+  , "either"
+  , "exceptions"
+  , "foreign"
+  , "js-date"
+  , "maybe"
+  , "nullable"
+  , "prelude"
+  , "psci-support"
+  , "react-basic-hooks"
+  , "simple-json"
+  , "typelevel-prelude"
+  ]
 , packages = ./packages.dhall
-, sources =
-    [ "src/**/*.purs"
-    , "test/**/*.purs"
-    ]
+, sources = [ "src/**/*.purs", "test/**/*.purs" ]
 }
