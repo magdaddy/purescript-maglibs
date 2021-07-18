@@ -13,8 +13,10 @@ const io = require("socket.io-client");
 
 exports.connect = url => () => io(url);
 
-exports.onImpl = evtype => soc => handler => () => soc.on(evtype, handler);
+exports.onImpl = evtype => skt => handler => () => skt.on(evtype, handler);
 
 exports.emitImpl = evtype => payload => skt => () => skt.emit(evtype, payload);
 
 exports.emitReqImpl = evtype => payload => skt => handler => () => skt.emit(evtype, payload, handler);
+
+exports.removeAllListenersForEvent = evtype => skt => () => skt.removeAllListeners(evtype);

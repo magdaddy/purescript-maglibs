@@ -5,7 +5,7 @@ import Prelude
 import Effect (Effect)
 import Effect.Aff (Aff)
 import MagLibs.SocketIo.Client (ClientSocket, emit, emitReq)
-import MagLibs.SocketIo.Client (on) as Client
+import MagLibs.SocketIo.Client (on, removeAllListenersForEvent) as Client
 import MagLibs.SocketIo.Server (Namespace, ServerSocket, nspEmit)
 import MagLibs.SocketIo.Server (on, onReq, onReqAff) as Server
 import Simple.JSON (class ReadForeign, class WriteForeign)
@@ -32,6 +32,10 @@ serverOn (ClientToServerMsg name) = Server.on (reflectSymbol name)
 clientOn :: forall name typ. IsSymbol name => ReadForeign typ =>
   ServerToClientMsg (Proxy name) typ -> ClientSocket -> (typ -> Effect Unit) -> Effect Unit
 clientOn (ServerToClientMsg name) = Client.on (reflectSymbol name)
+
+clientRemoveAllListenersFor :: forall name typ. IsSymbol name =>
+  ServerToClientMsg (Proxy name) typ -> ClientSocket -> Effect Unit
+clientRemoveAllListenersFor (ServerToClientMsg name) = Client.removeAllListenersForEvent (reflectSymbol name)
 
 
 data ClientToServerReq :: Type -> Type -> Type -> Type

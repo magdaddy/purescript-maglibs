@@ -9,6 +9,8 @@
 
 exports.server = options => () => require("socket.io")(options);
 
+exports.serverExt = httpServer => options => () => require("socket.io")(httpServer, options);
+
 exports.of_ = nspName => server => server.of(nspName);
 
 exports.nspEmitImpl = evtype => payload => nsp => () => nsp.emit(evtype, payload);

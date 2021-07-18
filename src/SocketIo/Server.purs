@@ -8,6 +8,7 @@ import Effect.Aff (Aff, runAff_)
 import Effect.Exception (throw)
 import Effect.Uncurried (EffectFn1, EffectFn2, mkEffectFn1, mkEffectFn2, runEffectFn1)
 import Foreign (Foreign)
+import Node.HTTP (Server) as Http
 import Simple.JSON (class ReadForeign, class WriteForeign, read, write)
 
 type NamespaceName = String
@@ -17,6 +18,8 @@ foreign import data Namespace :: Type
 foreign import data ServerSocket :: Type
 
 foreign import server :: forall r. Record r -> Effect Server
+
+foreign import serverExt :: forall r. Http.Server -> Record r -> Effect Server
 
 foreign import of_ :: NamespaceName -> Server -> Namespace
 

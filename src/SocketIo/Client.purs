@@ -49,3 +49,5 @@ emitReq name pl skt handler = emitReqImpl name (write pl) skt (mkEffectFn1 handl
     Right resPl -> handler resPl
 
 foreign import emitReqImpl :: String -> Foreign -> ClientSocket -> (EffectFn1 Foreign Unit) -> Effect Unit
+
+foreign import removeAllListenersForEvent :: String -> ClientSocket -> Effect Unit
