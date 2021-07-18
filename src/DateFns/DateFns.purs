@@ -10,3 +10,5 @@ parse :: String -> String -> JSDate
 parse fmtStr dateStr = parseImpl 0.0 fmtStr dateStr
 
 foreign import parseImpl :: Number -> String -> String -> JSDate
+
+foreign import parseISO :: String -> JSDate
