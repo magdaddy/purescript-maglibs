@@ -20,12 +20,16 @@ to generate this file without the comments in this block.
   , "foreign"
   , "js-date"
   , "maybe"
+  , "newtype"
+  , "node-http"
   , "nullable"
   , "prelude"
   , "psci-support"
   , "react-basic-hooks"
   , "simple-json"
+  , "transformers"
   , "typelevel-prelude"
+  , "variant"
   ]
 , packages = ./packages.dhall
 , sources = [ "src/**/*.purs", "test/**/*.purs" ]
